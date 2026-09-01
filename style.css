@@ -57,11 +57,20 @@ body {
 }
 
 .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 24px;
     font-weight: bold;
     color: var(--primary-blue);
     text-decoration: none;
     text-shadow: 1px 1px 0 var(--win95-highlight);
+}
+
+.logo img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
 }
 
 .nav-menu {
@@ -327,9 +336,8 @@ body {
 }
 
 .footer-top {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    display: flex;
+    justify-content: flex-start;
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
