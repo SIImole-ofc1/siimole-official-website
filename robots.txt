@@ -1,0 +1,4 @@
+# robots.txt
+User-agent: *
+Allow: /
+Sitemap: https://siimole-official-website.pages.dev/sitemap.xml

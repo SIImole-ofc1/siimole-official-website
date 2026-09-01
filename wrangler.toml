@@ -1,0 +1,20 @@
+# Cloudflare Pages Configuration
+name = "siimole-portfolio"
+type = "javascript"
+main = "index.html"
+
+[env.production]
+name = "siimole-portfolio"
+routes = [
+  { pattern = "example.com", zone_name = "example.com" }
+]
+
+[build]
+command = "echo 'No build needed for static site'"
+watch_paths = ["**/*.html", "**/*.css", "**/*.js"]
+
+[build.upload]
+dir = "."
+
+# You can also add custom domain configuration here
+# Once you've set up your Cloudflare account, update this file with your domain
