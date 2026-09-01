@@ -422,12 +422,19 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+        padding: 10px 16px;
     }
 
     .nav-menu {
-        gap: 15px;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .nav-link {
+        display: inline-block;
+        padding: 8px 9px;
     }
 
     .hero-content h1 {
@@ -451,11 +458,27 @@ body {
     }
 
     .hero {
-        padding: 50px 20px;
+        padding: 50px 16px;
     }
 
     .section {
-        padding: 40px 20px;
+        padding: 40px 16px;
+    }
+
+    .project-card,
+    .contact-card,
+    .about-content {
+        padding: 20px 16px;
+    }
+
+    .footer {
+        padding: 25px 16px;
+    }
+
+    .back-to-top {
+        right: 14px;
+        bottom: 14px;
+    }
     }
 }
 
@@ -468,6 +491,11 @@ body {
         font-size: 20px;
     }
 
+    .logo img {
+        width: 28px;
+        height: 28px;
+    }
+
     .hero-content h1 {
         font-size: 28px;
     }
@@ -477,11 +505,31 @@ body {
     }
 
     .nav-menu {
-        flex-direction: column;
-        gap: 10px;
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .nav-link {
+        padding: 7px 8px;
     }
 
     .section h2 {
         font-size: 20px;
+    }
+
+    .section-subtitle {
+        font-size: 12px;
+    }
+
+    .footer-bottom {
+        text-align: left;
+    }
+
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        right: 12px;
+        bottom: 12px;
     }
 }
