@@ -1,6 +1,9 @@
 // Simple navigation and interactivity
 
 document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.querySelector('.back-to-top');
+    let returningToTop = false;
+
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
@@ -33,6 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Active nav link highlighting
     window.addEventListener('scroll', function() {
+        if (window.scrollY <= 400) {
+            returningToTop = false;
+            backToTopButton.classList.remove('visible');
+        } else if (!returningToTop) {
+            backToTopButton.classList.add('visible');
+        }
+
         const sections = document.querySelectorAll('section[id]');
         
         sections.forEach(section => {
@@ -48,6 +58,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
+        });
+    });
+
+    backToTopButton.addEventListener('click', function() {
+        returningToTop = true;
+        backToTopButton.classList.remove('visible');
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     });
 });
