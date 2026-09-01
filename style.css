@@ -109,7 +109,7 @@ body {
 .hero-content h1 {
     font-size: 52px;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 12px rgba(255, 255, 255, 0.65), 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .tagline {
@@ -183,6 +183,14 @@ body {
 .project-icon {
     font-size: 48px;
     margin-bottom: 15px;
+}
+
+.project-icon img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 .project-card h3 {
