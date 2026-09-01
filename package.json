@@ -2,7 +2,6 @@
   "name": "siimole-portfolio",
   "version": "1.0.0",
   "description": "Windows 95-themed portfolio website for SIImole",
-  "main": "index.html",
   "scripts": {
     "start": "npx http-server -p 8080",
     "deploy": "wrangler pages deploy ."
@@ -16,6 +15,6 @@
   "author": "SIImole",
   "license": "Proprietary - All Rights Reserved",
   "devDependencies": {
-    "wrangler": "^3.0.0"
+    "wrangler": "^4.128.0"
   }
 }
