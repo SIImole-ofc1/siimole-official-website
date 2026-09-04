@@ -142,14 +142,21 @@ body {
     box-sizing: border-box;
 }
 
+@property --glow-radius {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 100px;
+}
+
 .hero-glow {
     position: absolute;
     inset: 0;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.25s ease;
+    --glow-radius: 100px;
     background: radial-gradient(
-        160px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+        var(--glow-radius) circle at var(--glow-x, 50%) var(--glow-y, 50%),
         rgba(255, 255, 255, 0.42) 0%,
         rgba(120, 200, 255, 0.2) 35%,
         transparent 70%
@@ -159,13 +166,14 @@ body {
 
 .hero.is-glowing .hero-glow {
     opacity: 1;
+    animation: hero-glow-pulse 1.6s ease-in-out infinite;
 }
 
 .hero-glow-trail {
     position: absolute;
-    width: 90px;
-    height: 90px;
-    margin: -45px 0 0 -45px;
+    width: 55px;
+    height: 55px;
+    margin: -27.5px 0 0 -27.5px;
     border-radius: 50%;
     pointer-events: none;
     background: radial-gradient(
@@ -181,6 +189,18 @@ body {
     will-change: opacity, transform;
 }
 
+@keyframes hero-glow-pulse {
+    0%,
+    100% {
+        --glow-radius: 90px;
+        opacity: 0.72;
+    }
+    50% {
+        --glow-radius: 115px;
+        opacity: 1;
+    }
+}
+
 @keyframes hero-glow-trail-fade {
     from {
         opacity: 0.7;
@@ -193,6 +213,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .hero.is-glowing .hero-glow {
+        animation: none;
+        --glow-radius: 100px;
+        opacity: 1;
+    }
+
     .hero-glow-trail {
         animation: none;
         display: none;
