@@ -76,17 +76,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
     if (hero && canHover && !prefersReducedMotion) {
+        let lastTrailX = null;
+        let lastTrailY = null;
+        const trailGap = 18;
+
         hero.addEventListener('mousemove', function(e) {
             const rect = hero.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            const xPx = e.clientX - rect.left;
+            const yPx = e.clientY - rect.top;
+            const x = (xPx / rect.width) * 100;
+            const y = (yPx / rect.height) * 100;
             hero.style.setProperty('--glow-x', x + '%');
             hero.style.setProperty('--glow-y', y + '%');
             hero.classList.add('is-glowing');
+
+            if (lastTrailX === null || lastTrailY === null) {
+                lastTrailX = xPx;
+                lastTrailY = yPx;
+                return;
+            }
+
+            const dx = xPx - lastTrailX;
+            const dy = yPx - lastTrailY;
+            if (dx * dx + dy * dy < trailGap * trailGap) return;
+
+            lastTrailX = xPx;
+            lastTrailY = yPx;
+
+            const trail = document.createElement('span');
+            trail.className = 'hero-glow-trail';
+            trail.style.left = xPx + 'px';
+            trail.style.top = yPx + 'px';
+            hero.appendChild(trail);
+
+            requestAnimationFrame(function() {
+                trail.classList.add('is-fading');
+            });
+
+            setTimeout(function() {
+                trail.remove();
+            }, 600);
         });
 
         hero.addEventListener('mouseleave', function() {
             hero.classList.remove('is-glowing');
+            lastTrailX = null;
+            lastTrailY = null;
         });
     }
 });

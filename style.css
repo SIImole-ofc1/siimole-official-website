@@ -149,16 +149,40 @@ body {
     opacity: 0;
     transition: opacity 0.25s ease;
     background: radial-gradient(
-        420px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-        rgba(255, 255, 255, 0.38) 0%,
-        rgba(120, 200, 255, 0.22) 28%,
-        transparent 58%
+        160px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+        rgba(255, 255, 255, 0.42) 0%,
+        rgba(120, 200, 255, 0.2) 35%,
+        transparent 70%
     );
     z-index: 0;
 }
 
 .hero.is-glowing .hero-glow {
     opacity: 1;
+}
+
+.hero-glow-trail {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    margin: -45px 0 0 -45px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(120, 200, 255, 0.14) 40%,
+        transparent 70%
+    );
+    opacity: 0.7;
+    transform: scale(1);
+    transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+    z-index: 0;
+}
+
+.hero-glow-trail.is-fading {
+    opacity: 0;
+    transform: scale(0.35);
 }
 
 .hero-content {
