@@ -408,6 +408,26 @@ body {
     color: #ffffff;
 }
 
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.footer-links a {
+    color: #ffff00;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
 .footer-bottom {
     text-align: center;
     font-size: 11px;
@@ -417,6 +437,75 @@ body {
 
 .footer-bottom p {
     margin-bottom: 8px;
+}
+
+/* Legal / Privacy pages */
+.legal-page {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.legal-content {
+    background-color: var(--win95-light-gray);
+    border: 2px solid;
+    border-color: var(--win95-highlight) var(--win95-shadow) var(--win95-shadow) var(--win95-highlight);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.legal-content h1 {
+    font-size: 28px;
+    color: var(--primary-blue);
+    margin-bottom: 28px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--accent-blue);
+    text-shadow: 1px 1px 0 var(--win95-highlight);
+}
+
+.legal-content h2 {
+    font-size: 18px;
+    color: var(--primary-blue);
+    margin-top: 28px;
+    margin-bottom: 12px;
+    padding-bottom: 0;
+    border-bottom: none;
+    text-shadow: none;
+}
+
+.legal-content p {
+    color: #333333;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.legal-content ul {
+    margin: 0 0 14px 22px;
+    color: #333333;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.legal-content li {
+    margin-bottom: 8px;
+}
+
+.legal-content a {
+    color: #0000aa;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.legal-content a:hover {
+    color: var(--primary-blue);
+}
+
+.legal-copyright {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--win95-shadow);
+    font-weight: bold;
+    color: #000000 !important;
 }
 
 /* Responsive Design */
