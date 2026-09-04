@@ -176,13 +176,27 @@ body {
     );
     opacity: 0.7;
     transform: scale(1);
-    transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+    animation: hero-glow-trail-fade 0.55s ease-out forwards;
     z-index: 0;
+    will-change: opacity, transform;
 }
 
-.hero-glow-trail.is-fading {
-    opacity: 0;
-    transform: scale(0.35);
+@keyframes hero-glow-trail-fade {
+    from {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.35);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-glow-trail {
+        animation: none;
+        display: none;
+    }
 }
 
 .hero-content {

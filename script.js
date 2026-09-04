@@ -75,10 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    if (hero && canHover && !prefersReducedMotion) {
+    // Soft follow-glow works on any fine pointer; trail is skipped when OS asks to reduce motion
+    // (common on Windows when "Animation effects" is off).
+    if (hero && canHover) {
         let lastTrailX = null;
         let lastTrailY = null;
-        const trailGap = 18;
+        const trailGap = 14;
 
         hero.addEventListener('mousemove', function(e) {
             const rect = hero.getBoundingClientRect();
@@ -89,6 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
             hero.style.setProperty('--glow-x', x + '%');
             hero.style.setProperty('--glow-y', y + '%');
             hero.classList.add('is-glowing');
+
+            if (prefersReducedMotion) return;
 
             if (lastTrailX === null || lastTrailY === null) {
                 lastTrailX = xPx;
@@ -105,17 +109,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const trail = document.createElement('span');
             trail.className = 'hero-glow-trail';
+            trail.setAttribute('aria-hidden', 'true');
             trail.style.left = xPx + 'px';
             trail.style.top = yPx + 'px';
             hero.appendChild(trail);
 
-            requestAnimationFrame(function() {
-                trail.classList.add('is-fading');
-            });
-
-            setTimeout(function() {
+            trail.addEventListener('animationend', function() {
                 trail.remove();
-            }, 600);
+            });
+            // Fallback cleanup if animationend does not fire
+            setTimeout(function() {
+                if (trail.parentNode) trail.remove();
+            }, 700);
         });
 
         hero.addEventListener('mouseleave', function() {
