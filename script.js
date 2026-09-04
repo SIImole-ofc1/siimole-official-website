@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (hero && canHover) {
         let lastTrailX = null;
         let lastTrailY = null;
-        const trailGap = 14;
+        const trailGap = 4;
 
         hero.addEventListener('mousemove', function(e) {
             const rect = hero.getBoundingClientRect();
@@ -102,17 +102,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const dx = xPx - lastTrailX;
             const dy = yPx - lastTrailY;
-            if (dx * dx + dy * dy < trailGap * trailGap) return;
+            const distSq = dx * dx + dy * dy;
+            if (distSq < trailGap * trailGap) return;
 
-            lastTrailX = xPx;
-            lastTrailY = yPx;
+            const length = Math.sqrt(distSq);
+            const angle = Math.atan2(dy, dx) * (180 / Math.PI);
 
             const trail = document.createElement('span');
             trail.className = 'hero-glow-trail';
             trail.setAttribute('aria-hidden', 'true');
-            trail.style.left = xPx + 'px';
-            trail.style.top = yPx + 'px';
+            trail.style.left = lastTrailX + 'px';
+            trail.style.top = lastTrailY + 'px';
+            trail.style.width = length + 'px';
+            trail.style.transform = 'rotate(' + angle + 'deg)';
             hero.appendChild(trail);
+
+            lastTrailX = xPx;
+            lastTrailY = yPx;
 
             trail.addEventListener('animationend', function() {
                 trail.remove();
