@@ -122,6 +122,13 @@ body {
     transform: translate(1px, 1px);
 }
 
+.brand-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
