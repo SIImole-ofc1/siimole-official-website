@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Fallback cleanup if animationend does not fire
             setTimeout(function() {
                 if (trail.parentNode) trail.remove();
-            }, 700);
+            }, 400);
         });
 
         hero.addEventListener('mouseleave', function() {
