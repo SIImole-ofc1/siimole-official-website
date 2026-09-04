@@ -131,6 +131,8 @@ body {
 
 /* Hero Section */
 .hero {
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
     color: #ffffff;
     padding: 80px 20px;
@@ -138,6 +140,30 @@ body {
     border-bottom: 3px solid var(--win95-shadow);
     width: 100%;
     box-sizing: border-box;
+}
+
+.hero-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    background: radial-gradient(
+        420px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+        rgba(255, 255, 255, 0.38) 0%,
+        rgba(120, 200, 255, 0.22) 28%,
+        transparent 58%
+    );
+    z-index: 0;
+}
+
+.hero.is-glowing .hero-glow {
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content h1 {

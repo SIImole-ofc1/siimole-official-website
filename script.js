@@ -69,4 +69,24 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+
+    // Cursor glow on hero (main page only)
+    const hero = document.querySelector('.hero');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    if (hero && canHover && !prefersReducedMotion) {
+        hero.addEventListener('mousemove', function(e) {
+            const rect = hero.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            hero.style.setProperty('--glow-x', x + '%');
+            hero.style.setProperty('--glow-y', y + '%');
+            hero.classList.add('is-glowing');
+        });
+
+        hero.addEventListener('mouseleave', function() {
+            hero.classList.remove('is-glowing');
+        });
+    }
 });
